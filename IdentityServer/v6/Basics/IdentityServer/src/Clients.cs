@@ -61,17 +61,31 @@ namespace IdentityServerHost
                 // MVC basic sample
                 new Client
                 {
-                    ClientId = "interactive.mvc.sample",
+                    ClientId = "interactive.mvc.sample_2",
                     ClientSecrets = { new Secret("secret".Sha256()) },
-                    
+                    RequireClientSecret = false,
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
+                    RedirectUris = { "https://localhost:8086/signin-oidc","https://oidcdebugger.com/debug" },
+                    FrontChannelLogoutUri = "https://localhost:8086/signout-oidc",
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope1", "scope2" }
+                    AllowedScopes = { "openid", "profile","email", "scope1", "scope2" }
+                },
+                 new Client
+                {
+                    ClientId = "interactive.mvc.sample",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.Implicit,
+
+                    RedirectUris = { "https://localhost:8086/signin-oidc","https://oidcdebugger.com/debug" },
+                    FrontChannelLogoutUri = "https://localhost:8086/signout-oidc",
+                    PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
+
+                    AllowOfflineAccess = true,
+                    AllowedScopes = { "openid", "profile","email", "scope1", "scope2" }
                 },
                 
                 // MVC basic sample with token management
@@ -80,16 +94,16 @@ namespace IdentityServerHost
                 {
                     ClientId = "interactive.mvc.sample.short.token.lifetime",
                     ClientSecrets = { new Secret("secret".Sha256()) },
-                    
+                    RequireClientSecret = false,
                     AllowedGrantTypes = GrantTypes.Code,
                     AccessTokenLifetime = 75,
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
+                    RedirectUris = { "https://localhost:8086/signin-oidc","https://oidcdebugger.com/debug" },
+                    FrontChannelLogoutUri = "https://localhost:8086/signout-oidc",
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope1", "scope2" }
+                    AllowedScopes = { "openid", "profile","email", "scope1", "scope2" }
                 },
                 
                 // MVC sample using JAR (signed authorize requests) and JWTs for client authentication
@@ -99,7 +113,7 @@ namespace IdentityServerHost
                     
                     // force client to use signed authorize request
                     RequireRequestObject = true,
-                    
+                    RequireClientSecret = false,
                     // this client uses an RSA key as client secret
                     // this key is used for both validating the signature on the authorize request
                     // and for client authentication
@@ -116,12 +130,12 @@ namespace IdentityServerHost
                     
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
+                    RedirectUris = { "https://localhost:8086/signin-oidc","https://oidcdebugger.com/debug" },
+                    FrontChannelLogoutUri = "https://localhost:8086/signout-oidc",
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope1", "scope2" }
+                    AllowedScopes = { "openid", "profile","email", "scope1", "scope2" }
                 },
                 
                 // MVC back-channel logout sample
@@ -129,15 +143,15 @@ namespace IdentityServerHost
                 {
                     ClientId = "mvc.backchannel.sample",
                     ClientSecrets = { new Secret("secret".Sha256()) },
-                    
+                    RequireClientSecret = false,
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
+                    RedirectUris = { "https://localhost:8086/signin-oidc","https://oidcdebugger.com/debug" },
                     BackChannelLogoutUri = "https://localhost:44300/logout",
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope1", "scope2" }
+                    AllowedScopes = { "openid", "profile","email", "scope1", "scope2" }
                 },
             };
     }
